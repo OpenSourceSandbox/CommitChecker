@@ -1,4 +1,4 @@
-# ✔️ CommitCheck
+# ✔️ 깃허브 커밋 확인
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Python version](https://img.shields.io/badge/python-3.8-blue)
@@ -34,3 +34,42 @@ my_checker.commit_check()
 
 ## 주의 사항
 GitHub 웹페이지의 구조가 변경될 경우, 해당 스크립트의 웹 스크랩핑 부분이 올바르게 작동하지 않을 수 있습니다. 이런 경우, 해당 부분을 적절히 수정하여 사용해야 합니다.
+
+---
+
+# ✔️ CommitCheck
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Python version](https://img.shields.io/badge/python-3.8-blue)
+
+CommitCheck is a simple and effective tool for tracking and notifying a specific user's daily GitHub contributions. This tool monitors a user's GitHub commit activity and sends customized messages to a designated Slack channel based on daily commits.
+
+This can be useful for team leaders or mentors wanting to keep track of team members' daily commits and contributions on GitHub. It can also assist in a "commit-a-day" challenge. By posting daily commit updates via Slack, it encourages a sense of responsibility and promotes healthy coding habits.
+
+## Requirements
+- Python 3
+- BeautifulSoup
+- slack_sdk
+- WebDriver (e.g., Selenium)
+
+## How to Use
+1. Create an instance of CommitCheck and pass in the necessary parameters.
+   - `git_name`: The username on GitHub
+   - `slack_token`: The Slack API token
+   - `slack_channel`: The ID of the Slack channel to post messages to
+   - `web_driver_manager`: The WebDriver manager
+
+2. Call the `commit_check()` method to check the user's daily commits and post a message to Slack.
+
+```python
+from my_web_driver_manager import MyWebDriverManager
+from commit_check import CommitCheck
+
+my_checker = CommitCheck(git_name='my_git_username', slack_token='my_slack_token', slack_channel='my_slack_channel', web_driver_manager=MyWebDriverManager())
+my_checker.commit_check()
+```
+
+This script checks the number of GitHub commits for the specified user on the current day and uses this information to generate a Slack message. If the user has not yet committed today, it sends a commit notification to the user. Conversely, if the user has already committed, it sends a message with the number of commits.
+
+## Note
+If the structure of the GitHub web page changes, the web scraping part of this script might not work correctly. In this case, you will need to appropriately modify that part for use.
